@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Marquee Test</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+
+    <style>
+        #marquee {
+            margin: 0 auto;
+            width: 80%;
+            background-color: cornsilk;
+            height: 16pt;
+            padding: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        RSS Marquee Test
+    </h1>
+    <div id="marquee"></div>
+    <div>source: <span id="hostname"></span></div>
+
+    <script src="./script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            let feedUrl = ['http://www.dnoticias.pt/rss/home.xml', 'https://cors-anywhere.herokuapp.com/https://www.buzzfeed.com/world.xml', 'http://www.dnoticias.pt/rss/mundo.xml'];
+            // let feedUrl = 'https://cors-anywhere.herokuapp.com/https://www.buzzfeed.com/world.xml';
+
+            const elementSelector = document.getElementById('marquee');
+
+            new RSSMarquee(feedUrl, elementSelector, {speed: 105, maxItems: 3, hostnameSelector: document.getElementById('hostname')});
+        });
+    </script>
+</body>
+
+</html>
