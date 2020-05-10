@@ -6,37 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RSS Marquee Test</title>
 
+    <meta name="author" content="Samuel Carreira">
+    <meta name="dcterms.dateCopyrighted" content="2020">
+
     <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;700&display=swap" rel="stylesheet">
+
     <style>
+        body {
+            background: #D3959B;
+            background: linear-gradient(to right, #BFE6BA, #D3959B);
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            height: 100vh;
+        }
+
         #marquee {
-            margin: 0 auto;
-            width: 80%;
-            background-color: cornsilk;
-            height: 16pt;
-            padding: 2px;
+            background-color: #ecf1eb;
+            letter-spacing: 0.2pt;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            font-weight: 700;
+            margin: 0 2vh 3vh 2vh;
+            font-size: 3vh;
+            padding: 1vh;
+            border-radius: 1.5vh;
+        }
+
+        h1 {
+            font-weight: 200;
+            text-align: center;
+            font-size: calc(6vw + 6vh + 3vmin);
+            background: -webkit-linear-gradient(#0f0c29, #302b63, #24243e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51613376-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51613376-2');
+    </script>
 </head>
 
 <body>
-    <h1>
-        RSS Marquee Test
-    </h1>
-    <div id="marquee"></div>
-    <div>source: <span id="hostname"></span></div>
+    <div id="container">
+        <div>
+            <h1>
+                RSS Marquee Test
+            </h1>
+        </div>
 
-    <script src="./script.js"></script>
+        <div>
+            <div id="marquee"></div>
+        </div>
+    </div>
 
+
+    <script src="rss-marquee.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            let feedUrl = ['http://www.dnoticias.pt/rss/home.xml', 'https://cors-anywhere.herokuapp.com/https://www.buzzfeed.com/world.xml', 'http://www.dnoticias.pt/rss/mundo.xml'];
-            // let feedUrl = 'https://cors-anywhere.herokuapp.com/https://www.buzzfeed.com/world.xml';
+            const feedUrl = ['https://cors-anywhere.herokuapp.com/https://www.buzzfeed.com/world.xml',
+                'https://www.dnoticias.pt/rss/home.xml',
+                'https://www.dnoticias.pt/rss/mundo.xml'
+            ];
 
             const elementSelector = document.getElementById('marquee');
 
-            new RSSMarquee(feedUrl, elementSelector, {speed: 105, maxItems: 3, hostnameSelector: document.getElementById('hostname')});
+            new RSSMarquee(feedUrl, elementSelector, {
+                speed: 105,
+                maxItems: 3
+            });
         });
     </script>
 </body>

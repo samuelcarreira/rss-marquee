@@ -1,5 +1,8 @@
 /*!
  * RSS Marquee
+ *
+ * Licensed under MIT
+ * Copyright (c) 2020 [Samuel Carreira]
  */
 class RSSMarquee {
     /**
@@ -8,6 +11,7 @@ class RSSMarquee {
      * @param {object} elementContainer the selector of the marquee container
      * @param {number} options.speed duration in ms per character. Bigger values = slow speed
      * @param {number} options.maxItems specify max number of titles to show (useful to debug)
+     * @param {object} options.hostnameSelector The selector of the element where you want to show the URL of the news feed source (usefull for copyright atttribution)
      */
     constructor(feedURLs, elementContainer, options = { speed: 110, maxItems: null, hostnameSelector: null }) {
         this._feedURLs = new Array();
@@ -156,7 +160,7 @@ class RSSMarquee {
     }
 
     showHostname(url) {
-        if (!this._options.hostnameSelector === null) {
+        if (!this._options.hostnameSelector) {
             return;
         }
 
