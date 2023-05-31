@@ -233,6 +233,10 @@ class RSSMarquee {
 
             fetch(feedURL, { mode: 'cors', redirect: 'follow' })
                 .then((response) => {
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+
                     return response.text();
                 })
                 .then((xmlTxt) => {
